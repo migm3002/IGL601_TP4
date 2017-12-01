@@ -124,6 +124,4 @@ public class MatchTest {
 		Assert.assertEquals(m1.getScore().getTabJeu()[0], "15");
 		Assert.assertEquals(m1.getScore().getTabJeu()[1], "30");
 	}
-	
-	// comment for git test
 }
