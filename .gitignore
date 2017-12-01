@@ -2,6 +2,6 @@
 .recommenders
 .settings
 .project
+.classpath
 /RemoteSystemsTempFiles/
 /bin/
-.classpath
