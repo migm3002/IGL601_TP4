@@ -75,6 +75,7 @@ public class ListeDesMatchs {
 		
 		return endedMatchs;
 	}
+	
 	public ArrayList<Match> getListeMatchs(){
 		return this.listeMatchs;
 	}

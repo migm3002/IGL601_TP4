@@ -1,13 +1,11 @@
 package ca.udes.tp.server;
 
 
-import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import ca.udes.tp.dao.DatabaseManager;
 import ca.udes.tp.object.ListeDesMatchs;
-import ca.udes.tp.object.Match;
 import ca.udes.tp.server.runnable.ChronoUpdater;
 import ca.udes.tp.server.runnable.EventsGenerator;
 import ca.udes.tp.server.runnable.EventsUpdater;
