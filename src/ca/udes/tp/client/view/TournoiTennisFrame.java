@@ -229,8 +229,4 @@ public class TournoiTennisFrame extends JFrame{
 	}
 
 
-	public static void main(String[] args) {
-		TournoiTennisFrame tn = new TournoiTennisFrame();
-	}
-
 }

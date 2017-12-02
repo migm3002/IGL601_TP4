@@ -3,8 +3,7 @@
 #USM5P245 : Maj du Set (S pour set) : le joueur 2 du match 5 a pour nouveaux Sets : [4,5,]
 #EM3P2S66 : Fin du match 3 (E pour end) : le joueur 2 l'emporte avec le score final :  Set[6,6,]
 #CM5P1 : Le joueur 1 du match 5 perd un point de contestation (C pour contestation)
-#Toute ligne ne commençant pas par # et non vide sera lue.
-# EVENT_TABLE_CAPACITY = 91
+#Toute ligne ne commencant pas par # et non vide sera lue.
 +M1P1.
 +M9P2.
 CM4P2.
