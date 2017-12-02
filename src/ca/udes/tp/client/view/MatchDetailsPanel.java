@@ -31,7 +31,7 @@ public class MatchDetailsPanel extends JPanel {
 		numMatchSelected = ListMatchPanel.getNumMatchSelected(); 
 
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
-		border = BorderFactory.createTitledBorder(border, "Détails du match");
+		border = BorderFactory.createTitledBorder(border, "Details du match");
 		this.setBorder(border);
 		this.removeAll();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
