@@ -37,9 +37,7 @@ public class BetPanel extends JPanel {
 		return listParis;
 	}
 
-	public void setListParis(ArrayList<Pari> listParis) {
-		this.listParis = listParis;
-	}
+
 
 	/**
 	 * The BetPanel contains the elements to select and fill to place a bet
