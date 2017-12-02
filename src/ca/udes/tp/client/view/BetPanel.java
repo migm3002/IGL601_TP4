@@ -27,6 +27,7 @@ import ca.udes.tp.object.Pari;
 
 public class BetPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private ListeDesMatchs listMatch;
 	private int numMatchSelected; 
 	private static ArrayList<Pari> listParis = new ArrayList<>();

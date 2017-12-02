@@ -9,6 +9,7 @@ import javax.swing.border.Border;
 
 public class MatchPanel extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
 	private MatchDetailsPanel matchDetPan;
 	private BetPanel betPan;
 

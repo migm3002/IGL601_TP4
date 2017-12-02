@@ -21,6 +21,7 @@ import ca.udes.tp.object.ListeDesMatchs;
 
 public class ListMatchPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private static ListeDesMatchs listMatchs;
 	private static int numMatchSelected = -1;
 	private Thread thread;

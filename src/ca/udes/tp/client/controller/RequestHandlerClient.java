@@ -37,8 +37,6 @@ public class RequestHandlerClient implements Runnable {
 	private MethodClient method;
 	private ArrayList<Object> arguments;
 	private RequestSender requestSender;
-	private Message request;
-	private Server server;
 
 	public enum MethodClient{
 		initListeDesMatchs,
@@ -68,7 +66,7 @@ public class RequestHandlerClient implements Runnable {
 				System.out.println("ERROR : arguments do not match the methode invoked");
 			}
 
-		break;
+			break;
 
 		case bet :
 
@@ -90,14 +88,15 @@ public class RequestHandlerClient implements Runnable {
 						+ "}"
 						+ "}";
 
+				Socket outputSocket = null;
 				try {
 					// create the JSON from the previous String
 					JSONObject jsonRequest = new JSONObject(jsonStringRequest);
 
 					// Create the socket that will send the request
-					Socket outputSocket = new Socket(InetAddress.getByName(HOME_ADDRESS), LISTENING_PORT_TCP_SERVER);
+					outputSocket = new Socket(InetAddress.getByName(HOME_ADDRESS), LISTENING_PORT_TCP_SERVER);
 					DataOutputStream outToServer = new DataOutputStream(outputSocket.getOutputStream());
-					
+
 					// send the request to the server
 					outToServer.writeBytes(jsonRequest.toString()+"\n");
 
@@ -110,7 +109,7 @@ public class RequestHandlerClient implements Runnable {
 					// Find the part about the bet and put it in a "Pari" object type
 					Pari pariResponse =JsonUtility.getPariFromPariJsonObject(jsonResponse.getJSONObject("pari"));
 
-					
+
 					if(pariResponse.getStatus().equals(Pari.Status.commited)) {	// if the bet previously created has a "commited" status
 						// the bet is added to the gambler's list of bets
 						BetPanel.getListParis().add(pariResponse);
@@ -124,16 +123,23 @@ public class RequestHandlerClient implements Runnable {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
+				}finally {
+					if(outputSocket!=null) {
+						try {
+							outputSocket.close();
+						}catch(IOException e) {
+							e.printStackTrace();
+						}
+					}
 				}
-
 			} else {
 				System.out.println("ERROR : arguments missing, impossible to place bet");
 			}
 
-		break;
-		
+			break;
+
 		case getEarnings :
-			
+
 			if(!this.arguments.isEmpty()) {
 				// Create the String that will be formatted to JSON to be sent to the server
 				String jsonStringRequest = "{"
@@ -151,18 +157,19 @@ public class RequestHandlerClient implements Runnable {
 						+ "\"status\" : "+arguments.get(4)+""
 						+ "}"
 						+ "}";
-				
+
+				Socket outputSocket = null;
 				try {
 					// Transform the previous String into JSON
 					JSONObject jsonRequest = new JSONObject(jsonStringRequest);
-					
+
 					// Create the socket that will send the request to the server
-					Socket outputSocket = new Socket(InetAddress.getByName(HOME_ADDRESS), LISTENING_PORT_TCP_SERVER);
+					outputSocket = new Socket(InetAddress.getByName(HOME_ADDRESS), LISTENING_PORT_TCP_SERVER);
 					DataOutputStream outToServer = new DataOutputStream(outputSocket.getOutputStream());
 
 					// Send the request to the server
 					outToServer.writeBytes(jsonRequest.toString()+"\n");
-					
+
 					// Create the BufferedReader that will receive the response from the server
 					BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(outputSocket.getInputStream()));
 					// Read the response and put it in a String
@@ -173,13 +180,13 @@ public class RequestHandlerClient implements Runnable {
 					Pari pariResponse =JsonUtility.getPariFromPariJsonObject(jsonResponse.getJSONObject("betEarnings"));
 					// Inform the gambler of their earnings
 					JOptionPane.showMessageDialog((JFrame)arguments.get(5),
-												  "Match : "+pariResponse.getIdMatch()
-												  + "\nVous avez gagne : "
-												  +pariResponse.getMontant()
-												  +" $CA",
-												  "Pari",
-												  JOptionPane.INFORMATION_MESSAGE);
-					
+							"Match : "+pariResponse.getIdMatch()
+							+ "\nVous avez gagne : "
+							+pariResponse.getMontant()
+							+" $CA",
+							"Pari",
+							JOptionPane.INFORMATION_MESSAGE);
+
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -189,8 +196,15 @@ public class RequestHandlerClient implements Runnable {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}finally {
+					if(outputSocket!=null) {
+						try {
+							outputSocket.close();
+						}catch(IOException e) {
+							e.printStackTrace();
+						}
+					}
 				}
-				
 			}
 
 		default :

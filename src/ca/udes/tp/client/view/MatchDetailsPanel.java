@@ -2,7 +2,6 @@ package ca.udes.tp.client.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -20,6 +19,7 @@ import ca.udes.tp.object.Match;
 
 public class MatchDetailsPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private ListeDesMatchs listMatch;
 	private int numMatchSelected; 
 

@@ -19,6 +19,7 @@ import ca.udes.tp.object.Pari;
 
 public class TournoiTennisFrame extends JFrame{
 
+	private static final long serialVersionUID = 1L;
 	private ListMatchPanel listMatchPan; 
 	private static MatchPanel matchPan;
 	private JButton refreshButton;
@@ -226,12 +227,6 @@ public class TournoiTennisFrame extends JFrame{
 	public static MatchPanel getMatchPan() {
 		return matchPan;
 	}
-
-	public static void setMatchPan(MatchPanel matchPan) {
-		matchPan = matchPan;
-	}
-
-
 
 
 	public static void main(String[] args) {
