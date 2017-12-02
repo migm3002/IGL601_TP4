@@ -5,11 +5,13 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 import ca.udes.tp.object.MatchTest;
+import integrationTests.TestIntegrationMatchBDD;
 
 @RunWith(Suite.class)
 @SuiteClasses(
 		{
-			MatchTest.class
+			MatchTest.class,
+			TestIntegrationMatchBDD.class
 		}
 	)
 public class TestSuite {
