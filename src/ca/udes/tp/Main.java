@@ -15,7 +15,7 @@ public class Main {
 			Server server = new Server();
 			server.run();
 
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 
 			new TournoiTennisFrame();
 		}catch(InterruptedException e) {
