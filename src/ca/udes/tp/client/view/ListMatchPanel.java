@@ -106,7 +106,7 @@ public class ListMatchPanel extends JPanel {
 			followBut.setName(""+listMatchs.get(i).getId());
 			followBut.addActionListener(new ActionListener() {
 
-				@Override
+				
 				public void actionPerformed(ActionEvent e) {
 					// When the follow button is clicked, display match details
 					numMatchSelected = Integer.parseInt(((JButton)e.getSource()).getName());
@@ -126,7 +126,7 @@ public class ListMatchPanel extends JPanel {
 	 * This method asks the RequestHandlerClient to send a request to get the list of matches
 	 */
 	public void initListeDesMatch() {
-		ArrayList<Object> args = new ArrayList<>();
+		ArrayList<Object> args = new ArrayList<Object>();
 		thread = new Thread(new RequestHandlerClient(MethodClient.initListeDesMatchs, args, requestSender));
 		thread.start();
 	}

@@ -45,8 +45,8 @@ public final class MatchDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
-				ArrayList<PreparedStatement> psArray = new ArrayList<>();
-				ArrayList<ResultSet> rsArray = new ArrayList<>();
+				ArrayList<PreparedStatement> psArray = new ArrayList<PreparedStatement>();
+				ArrayList<ResultSet> rsArray = new ArrayList<ResultSet>();
 				
 				psArray.add(insertWinnerPrepStmt);
 				rsArray.add(rsIdMatch);

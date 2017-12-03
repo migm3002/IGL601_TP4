@@ -1,10 +1,6 @@
 package ca.udes.tp.server.runnable;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -26,7 +22,7 @@ public class EventsGenerator implements Runnable{
 	private String[] eventTable; 			// Table that contains every events extracted from event file.
 
 	public EventsGenerator() {
-		this.eventQueue = new ArrayBlockingQueue<>(50);
+		this.eventQueue = new ArrayBlockingQueue<String>(50);
 		this.eventCounter=0;
 		initializeEventTable();
 	}

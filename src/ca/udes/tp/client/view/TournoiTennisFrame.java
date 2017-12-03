@@ -36,9 +36,9 @@ public class TournoiTennisFrame extends JFrame{
 	public TournoiTennisFrame() {
 
 		// lists of match that are over. Necessary to inform the gambler whether they have won or not and how much
-		currentListMatchEnded = new ArrayList<>();
-		oldListMatchEnded = new ArrayList<>();
-		newListMatchEnded = new ArrayList<>();
+		currentListMatchEnded = new ArrayList<Match>();
+		oldListMatchEnded = new ArrayList<Match>();
+		newListMatchEnded = new ArrayList<Match>();
 
 		// initialize the frame's parameter
 		this.setTitle("Tournois de tennis");
@@ -54,7 +54,7 @@ public class TournoiTennisFrame extends JFrame{
 		refreshButton.setPreferredSize(new Dimension(400, 30));
 		refreshButton.addActionListener(new ActionListener() {
 
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 
 				// When refreshing, the different panels are emptied and repainted with new data
@@ -148,7 +148,7 @@ public class TournoiTennisFrame extends JFrame{
 					if(p.getIdMatch() == newListMatchEnded.get(i).getId()) {	// if the match is a match the gambler has bet on
 						if(p.getIdJoueur() == newListMatchEnded.get(i).getWinner().getId()) {	// if the player the gabler bet on has actually won
 							
-							ArrayList<Object> args = new ArrayList<>();
+							ArrayList<Object> args = new ArrayList<Object>();
 							int idParieur = 1;
 							int idMatch = p.getIdMatch();
 							int idJoueur = p.getIdJoueur();
@@ -183,13 +183,13 @@ public class TournoiTennisFrame extends JFrame{
 	 */
 	public void manageEndedMatchLists() {
 		// the old list becomes the previous version of the current list
-		oldListMatchEnded = new ArrayList<>();
+		oldListMatchEnded = new ArrayList<Match>();
 		for(Match m : currentListMatchEnded) {
 			oldListMatchEnded.add(m);
 		}
 
 		// the current list is recalculated from the list of all �atches
-		currentListMatchEnded = new ArrayList<>();
+		currentListMatchEnded = new ArrayList<Match>();
 		for(Match m : listMatchPan.getListMatchs().getListeMatchs()) {
 			if(m.isEnded()) {
 				currentListMatchEnded.add(m);
@@ -197,7 +197,7 @@ public class TournoiTennisFrame extends JFrame{
 		}
 				
 		// create a temporary list, similar to the current list
-		ListeDesMatchs listTemp = new ListeDesMatchs(new ArrayList<>());
+		ListeDesMatchs listTemp = new ListeDesMatchs(new ArrayList<Match>());
 		for(Match m : currentListMatchEnded) {
 			listTemp.add(m);
 		}
@@ -211,7 +211,7 @@ public class TournoiTennisFrame extends JFrame{
 			}
 		}
 		// the new list becomes the temporary list.
-		newListMatchEnded = new ArrayList<>();
+		newListMatchEnded = new ArrayList<Match>();
 		newListMatchEnded = listTemp.getListeMatchs();
 	}
 

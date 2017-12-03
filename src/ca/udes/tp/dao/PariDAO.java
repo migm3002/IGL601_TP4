@@ -80,8 +80,8 @@ public final class PariDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
-				ArrayList<PreparedStatement> psArray = new ArrayList<>();
-				ArrayList<ResultSet> rsArray = new ArrayList<>();
+				ArrayList<PreparedStatement> psArray = new ArrayList<PreparedStatement>();
+				ArrayList<ResultSet> rsArray = new ArrayList<ResultSet>();
 
 				psArray.add(placeBetPrepStatement);
 				rsArray.add(rsIdPari);
@@ -123,8 +123,8 @@ public final class PariDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
-				ArrayList<PreparedStatement> psArray = new ArrayList<>();
-				ArrayList<ResultSet> rsArray = new ArrayList<>();
+				ArrayList<PreparedStatement> psArray = new ArrayList<PreparedStatement>();
+				ArrayList<ResultSet> rsArray = new ArrayList<ResultSet>();
 
 				psArray.add(getTotalBetsPrepStmt);
 				rsArray.add(rsTotalBets);
@@ -167,8 +167,8 @@ public final class PariDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
-				ArrayList<PreparedStatement> psArray = new ArrayList<>();
-				ArrayList<ResultSet> rsArray = new ArrayList<>();
+				ArrayList<PreparedStatement> psArray = new ArrayList<PreparedStatement>();
+				ArrayList<ResultSet> rsArray = new ArrayList<ResultSet>();
 
 				psArray.add(getAllWinningBetPrepStmt);
 				rsArray.add(rsWinningBets);
@@ -213,8 +213,8 @@ public final class PariDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
-				ArrayList<PreparedStatement> psArray = new ArrayList<>();
-				ArrayList<ResultSet> rsArray = new ArrayList<>();
+				ArrayList<PreparedStatement> psArray = new ArrayList<PreparedStatement>();
+				ArrayList<ResultSet> rsArray = new ArrayList<ResultSet>();
 
 				psArray.add(getBetPrepStmt);
 				rsArray.add(rsBet);
@@ -233,7 +233,7 @@ public final class PariDAO {
 	 * @return ArrayList<Integer> : the list of gamblers
 	 */
 	public static ArrayList<Integer> getListOfWinners(int idMatch){
-		ArrayList<Integer> listWinners = new ArrayList<>();
+		ArrayList<Integer> listWinners = new ArrayList<Integer>();
 
 		PreparedStatement getListOfWinnersPrepStmt = null;
 		ResultSet rsListWinners = null;
@@ -256,8 +256,8 @@ public final class PariDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
-				ArrayList<PreparedStatement> psArray = new ArrayList<>();
-				ArrayList<ResultSet> rsArray = new ArrayList<>();
+				ArrayList<PreparedStatement> psArray = new ArrayList<PreparedStatement>();
+				ArrayList<ResultSet> rsArray = new ArrayList<ResultSet>();
 
 				psArray.add(getListOfWinnersPrepStmt);
 				rsArray.add(rsListWinners);
@@ -323,7 +323,7 @@ public final class PariDAO {
 	 * @return the gambler associated with its earnings
 	 */
 	public static HashMap<Integer, Double> listOfEarnings(int idMatch){
-		HashMap<Integer, Double> listOfEarnings = new HashMap<>();
+		HashMap<Integer, Double> listOfEarnings = new HashMap<Integer, Double>();
 
 		ArrayList<Integer> listWinners = getListOfWinners(idMatch);
 

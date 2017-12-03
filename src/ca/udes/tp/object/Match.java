@@ -116,17 +116,16 @@ public class Match {
 			String[][] newTabSet = tabSet;
 			String[] newTabJeu = new String[2];
 			Score newScore;
-			switch(pointsPlayer) {
-			case "0":
+			if(pointsPlayer.equals("0")){
 				pointsPlayer="15";
-				break;
-			case "15":
+				
+			}else if(pointsPlayer.equals("15")){
 				pointsPlayer="30";
-				break;
-			case "30":
+				
+			}else if(pointsPlayer.equals("30")){
 				pointsPlayer="40";
-				break;
-			case "40":
+				
+			}else if(pointsPlayer.equals("40")){
 				if(pointsAdversary.equals("40")) {
 					pointsPlayer="Av";
 					pointsAdversary="";
@@ -141,8 +140,8 @@ public class Match {
 					}
 					newTabSet = getNewTabSet(tabSet, playerNumber, endOfMatch);
 				}
-				break;
-			case "Av":
+			
+			}else if(pointsPlayer.equals("Av")) {
 				if(endOfMatch) {
 					pointsPlayer="";
 					pointsAdversary="";
@@ -152,14 +151,14 @@ public class Match {
 					changeService();
 				}
 				newTabSet = getNewTabSet(tabSet, playerNumber, endOfMatch);
-				break;
-			case "":
+				
+			}else if(pointsPlayer.equals("")) {
 				pointsPlayer="40";
 				pointsAdversary="40";
-				break;
-			default:
+				
+			}else {
 				System.out.println("Error while adding point to the score");
-				break;
+				
 			}
 
 			if(playerNumber==1) {

@@ -26,8 +26,8 @@ public class DatabaseManager implements Runnable{
 	private ArrayBlockingQueue<Message> queueOutput;		//Queue used to send responses to RequestListenerTcp
 
 	public DatabaseManager(Server server) {
-		this.queueInput= new ArrayBlockingQueue<>(QUEUE_INPUT_CAPACITY, true);
-		this.queueOutput = new ArrayBlockingQueue<>(QUEUE_OUTPUT_CAPACITY);
+		this.queueInput= new ArrayBlockingQueue<Object>(QUEUE_INPUT_CAPACITY, true);
+		this.queueOutput = new ArrayBlockingQueue<Message>(QUEUE_OUTPUT_CAPACITY);
 		this.server=server;
 	}
 

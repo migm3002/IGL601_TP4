@@ -66,7 +66,7 @@ public class ListeDesMatchs {
 	 * @return ArrayList<Match>
 	 */
 	public ArrayList<Match> getEndedMatchs(){
-		ArrayList<Match> endedMatchs = new ArrayList<>();
+		ArrayList<Match> endedMatchs = new ArrayList<Match>();
 		for(Match match : getListeMatchs()) {
 			if (match.isEnded()) {
 				endedMatchs.add(match);
@@ -89,7 +89,7 @@ public class ListeDesMatchs {
 	 * some of them already started and some of them already ended.
 	 */
 	public void initCurrentListeDesMatchs() {
-		ArrayList<Match> arrayListeMatchs = new ArrayList<>();
+		ArrayList<Match> arrayListeMatchs = new ArrayList<Match>();
 		
 		Joueur joueur1 = new Joueur(1, "NADAL", "Rafael", 1, true);
 		Joueur joueur2 = new Joueur(2, "NISHIKORI", "Kei", 14, false);

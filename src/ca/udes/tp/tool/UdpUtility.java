@@ -25,14 +25,10 @@ public final class UdpUtility {
 		Message message=null;
 		byte[] data = datagramPacket.getData();
 
-		try {
-			String jsonString = String.valueOf(convertFromBytes(data));
-			message = JsonUtility.convertJsonStringIntoMessage(jsonString);
-		}catch(IOException e) {
-			e.printStackTrace();
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+
+		String jsonString = String.valueOf(convertFromBytes(data));
+		message = JsonUtility.convertJsonStringIntoMessage(jsonString);
+
 
 		return message;
 	}
@@ -44,29 +40,54 @@ public final class UdpUtility {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public static Object convertFromBytes(byte[] bytes) throws IOException, ClassNotFoundException {
+	public static Object convertFromBytes(byte[] bytes){
+		ObjectInput in = null;
+		Object object = null;
+		try { 
+			ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+			in = new ObjectInputStream(bis);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(in!=null) {
+					object = in.readObject();
+				}
+			}catch(IOException e) {
+				e.printStackTrace();
+			}catch(ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
 
-		try (ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-				ObjectInput in = new ObjectInputStream(bis)) {
-			Object object = in.readObject();
-			
-			return object;
-		} 
+		return object;
 	}
-	
+
 	/**
 	 * Convert an Object into a byte array.
 	 * @param Object : object
 	 * @return byte[] bytes
 	 * @throws IOException
 	 */
-	public static byte[] convertToBytes(Object object) throws IOException {
-		try (ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
-				ObjectOutput out = new ObjectOutputStream(bos)) {
-			out.writeObject(object);
-			byte[] bytes = bos.toByteArray();
-			
-			return bytes;
+	public static byte[] convertToBytes(Object object){
+		ObjectOutput out = null;
+		ByteArrayOutputStream bos = null;
+		byte[] bytes = null;
+		try { 
+			bos = new ByteArrayOutputStream(); 
+			out = new ObjectOutputStream(bos);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				if(out!=null && bos!=null) {
+					out.writeObject(object);
+					bytes = bos.toByteArray();
+				}
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
 		} 
+		return bytes;
 	}
 }

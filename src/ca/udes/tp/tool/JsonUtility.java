@@ -343,7 +343,7 @@ public final class JsonUtility {
 	 */
 	public static ListeDesMatchs getListeDesMatchs(JSONObject messageJson) {
 		ListeDesMatchs listeDesMatchs=null;
-		ArrayList<Match> arrayListMatchs = new ArrayList<>();
+		ArrayList<Match> arrayListMatchs = new ArrayList<Match>();
 		try {
 			if(messageJson.getJSONArray(LIST_MATCH_KEY)!=null) {
 				JSONArray matchArray = messageJson.getJSONArray(LIST_MATCH_KEY);

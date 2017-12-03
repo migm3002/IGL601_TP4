@@ -30,7 +30,7 @@ public class BetPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ListeDesMatchs listMatch;
 	private int numMatchSelected; 
-	private static ArrayList<Pari> listParis = new ArrayList<>();
+	private static ArrayList<Pari> listParis = new ArrayList<Pari>();
 	public JPanel betPan = this;
 
 	public static ArrayList<Pari> getListParis() {
@@ -70,12 +70,12 @@ public class BetPanel extends JPanel {
 				Joueur player2 = match.getJoueur2();
 
 				// the list of players in the match
-				ArrayList<Joueur> listPlayers = new ArrayList<>();
+				final ArrayList<Joueur> listPlayers = new ArrayList<Joueur>();
 				listPlayers.add(player1);
 				listPlayers.add(player2);
 
 				// ComboBox that allows to chose on which player to bet
-				JComboBox<String> playersComboBox = new JComboBox<>();
+				final JComboBox<String> playersComboBox = new JComboBox<String>();
 				playersComboBox.setMaximumSize(new Dimension(300, 40));
 				playersComboBox.addItem(player1.getPrenom()+" "+player1.getNom());
 				playersComboBox.addItem(player2.getPrenom()+" "+player2.getNom());
@@ -87,23 +87,23 @@ public class BetPanel extends JPanel {
 				this.add(amountLabel);
 
 				// TextField to type the amount to bet
-				JTextField amountTextField = new JTextField();
+				final JTextField amountTextField = new JTextField();
 				amountTextField.setMaximumSize(new Dimension(300, 40));
 				this.add(amountTextField);
 
 				this.add(Box.createRigidArea(new Dimension(0, 10)));
 
 				// The button to click to send bet request
-				JButton betButton = new JButton("Parier");
+				final JButton betButton = new JButton("Parier");
 				betButton.setEnabled(false);
 				this.add(betButton);
 
 				amountTextField.addKeyListener(new KeyListener() {
-					@Override
+					
 					public void keyTyped(KeyEvent e) {
 					}
 
-					@Override
+					
 					public void keyReleased(KeyEvent e) {
 						// check whether the TextField contains a correct amount of money
 						try {
@@ -119,20 +119,20 @@ public class BetPanel extends JPanel {
 						}
 					}
 
-					@Override
+					
 					public void keyPressed(KeyEvent e) {
 					}
 				});
 
 				betButton.addActionListener(new ActionListener() {
 
-					@Override
+					
 					public void actionPerformed(ActionEvent e) {
 						int idJoueur = (listPlayers.get(playersComboBox.getSelectedIndex())).getId();
 						double betAmount = Double.parseDouble(amountTextField.getText());
 						int idParieur = 1;
 						
-						ArrayList<Object> args = new ArrayList<>();
+						ArrayList<Object> args = new ArrayList<Object>();
 						args.add(idJoueur);
 						args.add(idParieur);
 						args.add(numMatchSelected);
