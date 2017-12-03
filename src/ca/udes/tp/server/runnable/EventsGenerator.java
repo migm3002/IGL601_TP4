@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 
 
@@ -20,7 +20,7 @@ public class EventsGenerator implements Runnable{
 	public static final int EVENT_TABLE_CAPACITY = 91;
 	public static final String PATH_TO_EVENT_TEXT_FILE = 
 			"events\\eventFile.txt";
-	
+
 	ArrayBlockingQueue<String> eventQueue;	// Queue where EventsGenerator puts events from eventTable, for EventsUpdater.
 	private int eventCounter; 				// The next event index in event table.
 	private String[] eventTable; 			// Table that contains every events extracted from event file.
@@ -70,38 +70,109 @@ public class EventsGenerator implements Runnable{
 	 */
 	private void initializeEventTable() {
 		String[] eventTable = new String[EVENT_TABLE_CAPACITY];
-		File eventFile = new File(PATH_TO_EVENT_TEXT_FILE);
-		BufferedReader bufferedReader = null;
-		try {
-			bufferedReader= new BufferedReader(new FileReader(eventFile));
 
-			String eventString;
-			int tableIndex=0;
-			while((eventString = bufferedReader.readLine())!=null && tableIndex<EVENT_TABLE_CAPACITY) {
-				if(!eventString.equals("")) {
-					if(!eventString.substring(0, 1).equals("#")) {
-						eventTable[tableIndex]=eventString;
-						tableIndex++;
-					}
-				}else {
-					System.out.println("Error : event file is not supposed to have a blank line");
-				}
+		ArrayList<String> events = new ArrayList<String>();
+		events.add("+M1P1.");
+		events.add("+M9P2.");
+		events.add("CM4P2.");
+		events.add("+M4P1.");
+		events.add("+M2P1.");
+		events.add("+M6P1.");
+		events.add("+M5P2.");
+		events.add("+M8P1.");
+		events.add("+M10P2.");
+		events.add("+M3P1.");
+		events.add("CM6P2.");
+		events.add("+M6P1.");
+		events.add("+M5P2.");
+		events.add("+M1P2.");
+		events.add("+M2P1.");
+		events.add("+M9P1.");
+		events.add("+M10P1.");
+		events.add("+M3P1.");
+		events.add("+M6P2.");
+		events.add("+M5P2.");
+		events.add("+M8P1.");
+		events.add("+M1P2.");
+		events.add("+M9P2.");
+		events.add("+M5P2.");
+		events.add("+M2P1.");
+		events.add("+M4P2.");
+		events.add("+M10P1.");
+		events.add("+M5P2.E");
+		events.add("+M8P2.");
+		events.add("+M6P1.");
+		events.add("+M3P1.");
+		events.add("+M9P2.");
+		events.add("+M1P1.");
+		events.add("+M2P2.");
+		events.add("+M9P2.");
+		events.add("+M8P1.");
+		events.add("+M3P1.");
+		events.add("+M9P2.");
+		events.add("+M4P2.");
+		events.add("+M6P1.");
+		events.add("+M9P1.");
+		events.add("+M10P2.");
+		events.add("+M1P1.");
+		events.add("+M8P2.");
+		events.add("+M6P1.");
+		events.add("+M9P2.");
+		events.add("+M2P1.");
+		events.add("+M10P2.");
+		events.add("+M4P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M3P2.");
+		events.add("+M8P2.");
+		events.add("+M9P2.");
+		events.add("+M3P2.");
+		events.add("+M1P1.");
+		events.add("+M9P1.");
+		events.add("+M2P2.");
+		events.add("+M4P1.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M6P1.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M10P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.");
+		events.add("+M9P2.E");
+		
+		if(events.size()==EVENT_TABLE_CAPACITY) {
+			for(int i=0; i< events.size(); i++) {
+				eventTable[i]=events.get(i);
 			}
-
 			setEventTable(eventTable);
-		}catch(FileNotFoundException e) {
-			e.printStackTrace();
-		}catch(IOException e) {
-			e.printStackTrace();
-		}finally {
-			if(bufferedReader!=null) {
-				try {
-					bufferedReader.close();
-				}catch(IOException e) {
-					e.printStackTrace();
-				}
-			}
+		}else {
+			throw new Error("Error : event table capacity is not equal to number of events");
 		}
+		
 	}
 
 
