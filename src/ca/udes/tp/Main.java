@@ -10,7 +10,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		yste.out.println("Welcome to the tennis app!");
+		System.out.println("Welcome to the tennis app!");
 		// TODO Auto-generated method stub
 		try {
 			Server server = new Server();
