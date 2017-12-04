@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class MatchTest {
 	
-	private Joueur j1 = new Joueur(1, "NADAL", "Rafaal", 1, true);
+	private Joueur j1 = new Joueur(1, "NADAL", "Rafael", 1, true);
 	private Joueur j2 = new Joueur(2, "FEDERER", "Roger", 2, false);
 	
 	private Joueur j3 = new Joueur(3, "WILLIAMS", "Serena", 1, false);
