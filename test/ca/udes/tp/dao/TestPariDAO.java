@@ -48,7 +48,7 @@ public class TestPariDAO {
 	@Test
 	public void testGetListOfWinners() {
 		ArrayList<Integer> listWinners = new ArrayList <Integer>();
-		listWinners.add(11);
+		listWinners.add(1);
 		
 		assertTrue("GetBetForGivenGambler returns the bad bet", (PariDAO.getListOfWinners(2)==listWinners));
 	}
