@@ -84,7 +84,7 @@ public class RequestListenerUdpTest {
 		Thread udpListenerThread = new Thread(listenerUdpTest);
 		udpListenerThread.start();
 		try {
-			Thread.sleep(800);
+			Thread.sleep(2000);
 		}catch(InterruptedException e) {
 			e.printStackTrace();
 		}
