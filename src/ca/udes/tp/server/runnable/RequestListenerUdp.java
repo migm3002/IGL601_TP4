@@ -90,6 +90,9 @@ public class RequestListenerUdp implements Runnable {
 		return this.responseSender;
 	}
 
+	public Server getServer() {
+		return this.server;
+	}
 
 	
 
