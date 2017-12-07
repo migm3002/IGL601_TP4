@@ -1,4 +1,4 @@
-package integrationTests;
+package ca.udes.tp.dao;
 
 import static org.junit.Assert.*;
 
@@ -9,18 +9,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ca.udes.tp.dao.PariDAO;
+import utility.TestUtility;
 
 
-public class TestIntegrationPariBDD {
+public class TestPariDAO {
 
 	@Before
 	public void setUp(){
-		//Ajouter script de BDD pour la simuler
+		TestUtility.CleanUpDB();
 	}
 
 	@After
 	public void tearDown(){
-
+		TestUtility.CleanUpDB();
 	}
 
 	@Test
