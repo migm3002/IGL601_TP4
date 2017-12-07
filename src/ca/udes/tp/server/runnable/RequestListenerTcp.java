@@ -68,6 +68,7 @@ public class RequestListenerTcp implements Runnable{
 		}catch(InterruptedException e) {
 			e.printStackTrace();
 		}finally {
+			
 			//Close the socket
 			try {
 				if(requestSocket!=null) {

@@ -41,8 +41,9 @@ public class ResponseSender{
 
 		DatagramSocket responseSocket = null;
 		try{
-			
+			System.out.println("DEBUG1");
 			responseSocket = new DatagramSocket(getSendingPortUdp());
+			System.out.println("DEBUG2");
 			byte[] buffer = UdpUtility.convertToBytes(jsonMessage.toString());
 
 			if(buffer.length<=RequestListenerUdp.BUFFER_SIZE) {
