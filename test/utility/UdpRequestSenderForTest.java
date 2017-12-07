@@ -30,7 +30,11 @@ public class UdpRequestSenderForTest implements Runnable {
 		DatagramSocket requestSocket = null;
 
 		try {
-
+			try {
+				Thread.sleep(500);
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
 			Message request = new Message(true, 1, Method.updateScore, Message.EMPTY_ARGUMENT,
 					HOME_ADDRESS, LISTENING_PORT_UDP_CLIENT);
 
