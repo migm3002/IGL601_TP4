@@ -26,15 +26,17 @@ import org.junit.Test;
 
 public class ClientTest {
 	
-	private Server serverTest;
-	private RequestHandlerClient requestHandlerClientTest;
-	private RequestSender requestSenderTest;
-	private ListeDesMatchs listeDesMatchsTest;
+	private Server serverTest = new Server();
+	//private RequestHandlerClient requestHandlerClientTest;
+	//private RequestSender requestSenderTest;
+	private ListeDesMatchs listeDesMatchsTest = new ListeDesMatchs();
 	
-	private Message msg1 = new Message (true, 0, Method.updateScore, Message.EMPTY_ARGUMENT, requestHandlerClientTest.HOME_ADDRESS, requestHandlerClientTest.LISTENING_PORT_UDP_CLIENT);
-
+	private Message msg1 = new Message (true, 0, Method.updateScore, Message.EMPTY_ARGUMENT, RequestHandlerClient.HOME_ADDRESS, RequestHandlerClient.LISTENING_PORT_UDP_CLIENT);
+	
+	
 	//on simule la fonction sendRequest pour retourner un objet ListeDesMatchs
 	public ListeDesMatchs sendRequestBis (Message request) {
+		this.serverTest.run();
 		ListeDesMatchs listMatchs = null;
 
 		DatagramSocket requestSocket = null;
@@ -43,7 +45,7 @@ public class ClientTest {
 		try {
 
 			// create socket from which the request is sent
-			requestSocket = new DatagramSocket(requestSenderTest.SENDING_PORT_UDP_CLIENT, InetAddress.getByName(requestSenderTest.HOME_ADDRESS));
+			requestSocket = new DatagramSocket(RequestSender.SENDING_PORT_UDP_CLIENT, InetAddress.getByName(RequestSender.HOME_ADDRESS));
 
 			// convert Message to JSONObject
 			JSONObject jsonMsg = JsonUtility.convertMessageIntoJsonMessage(request);
@@ -52,7 +54,7 @@ public class ClientTest {
 
 			if(bufferReq.length <= RequestListenerUdp.BUFFER_SIZE) {	// if the buffer is smaller than max size
 				//create packet to be sent to the server (contains the bytes representing the message)
-				DatagramPacket requestPacket = new DatagramPacket(bufferReq, bufferReq.length, InetAddress.getByName(request.getClientAddress()), requestSenderTest.LISTENING_PORT_UDP_SERVER);
+				DatagramPacket requestPacket = new DatagramPacket(bufferReq, bufferReq.length, InetAddress.getByName(request.getClientAddress()), RequestSender.LISTENING_PORT_UDP_SERVER);
 				// send the packet to server
 				requestSocket.send(requestPacket);
 				
@@ -60,7 +62,7 @@ public class ClientTest {
 				// create buffer to receive data
 				byte[] bufferResp = new byte[RequestListenerUdp.BUFFER_SIZE];
 				// create the socket to receive response from server
-				responseSocket = new DatagramSocket(requestSenderTest.LISTENING_PORT_UDP_CLIENT, InetAddress.getByName(requestSenderTest.HOME_ADDRESS));
+				responseSocket = new DatagramSocket(RequestSender.LISTENING_PORT_UDP_CLIENT, InetAddress.getByName(RequestSender.HOME_ADDRESS));
 				responseSocket.setSoTimeout(2500);
 
 				// create the packet to receive data
