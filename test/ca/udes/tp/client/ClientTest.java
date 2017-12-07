@@ -124,7 +124,7 @@ public class ClientTest {
 		ArrayList<Match> array2 = list2.getListeMatchs();
 		
 		for(int i=0; i<array1.size(); i++) {
-			System.out.println(i);
+
 			//Joueurs
 			if(list1.get(i).getJoueur1().getId()!=list2.get(i).getJoueur1().getId()) {
 				same=false;
