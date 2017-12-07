@@ -20,7 +20,7 @@ import ca.udes.tp.tool.UdpUtility;
 
 public class UdpRequestSenderForTest implements Runnable {
 
-	private static final int LISTENING_PORT_UDP_SERVER = Server.DEFAULT_LISTENING_PORT_UDP;
+	private static final int LISTENING_PORT_UDP_SERVER = Server.DEFAULT_LISTENING_PORT_UDP+1;
 	private static final int SENDING_PORT_UDP_CLIENT = 16003;
 	private static final int LISTENING_PORT_UDP_CLIENT = 16002;
 	private static final String HOME_ADDRESS = "127.0.0.1";
@@ -31,7 +31,7 @@ public class UdpRequestSenderForTest implements Runnable {
 		try {
 
 			Message request = new Message(true, 1, Method.updateScore, Message.EMPTY_ARGUMENT,
-					HOME_ADDRESS, LISTENING_PORT_UDP_CLIENT+1);
+					HOME_ADDRESS, LISTENING_PORT_UDP_CLIENT);
 
 			// create socket from which the request is sent
 			requestSocket = new DatagramSocket(SENDING_PORT_UDP_CLIENT, InetAddress.getByName(HOME_ADDRESS));
@@ -43,7 +43,8 @@ public class UdpRequestSenderForTest implements Runnable {
 
 			if(bufferReq.length <= RequestListenerUdp.BUFFER_SIZE) {	// if the buffer is smaller than max size
 				//create packet to be sent to the server (contains the bytes representing the message)
-				DatagramPacket requestPacket = new DatagramPacket(bufferReq, bufferReq.length, InetAddress.getByName(request.getClientAddress()), LISTENING_PORT_UDP_SERVER);
+				DatagramPacket requestPacket = new DatagramPacket(bufferReq, bufferReq.length, InetAddress.
+						getByName(request.getClientAddress()), LISTENING_PORT_UDP_SERVER);
 				// send the packet to server
 				requestSocket.send(requestPacket);
 
