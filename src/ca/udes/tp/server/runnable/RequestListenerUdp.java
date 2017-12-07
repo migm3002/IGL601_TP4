@@ -23,6 +23,8 @@ public class RequestListenerUdp implements Runnable {
 	private ExecutorService threadPool;
 	private ResponseSender responseSender;
 	private Server server;
+	//Indicate if the listener has received at least one request and handled it
+	private boolean hasReceivedOnce = false;
 	
 
 	public RequestListenerUdp(int listeningPort, Server server) {
@@ -40,8 +42,6 @@ public class RequestListenerUdp implements Runnable {
 	}
 
 	public void run() {
-
-
 		DatagramSocket requestSocket = null;
 
 		try {
@@ -63,6 +63,7 @@ public class RequestListenerUdp implements Runnable {
 				if(threadPool!=null) {
 					//Launch one of the inactive threads from threadPool, and give it the client's request message. 
 					threadPool.execute(new UpdateScoreRequestThread(request, server));
+					this.hasReceivedOnce = true;
 				}else {
 					System.out.println("Error : no thread pool assigned to this server");
 				}
@@ -93,6 +94,11 @@ public class RequestListenerUdp implements Runnable {
 	public Server getServer() {
 		return this.server;
 	}
+	
+	public boolean hasReceivedOnce() {
+		return this.hasReceivedOnce;
+	}
+	
 
 	
 

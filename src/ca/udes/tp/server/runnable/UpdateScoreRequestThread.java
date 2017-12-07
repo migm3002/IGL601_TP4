@@ -43,7 +43,7 @@ public class UpdateScoreRequestThread implements Runnable{
 				if(responseSender.sendUdpResponse(answer)) {
 					System.out.println("UDP Answer to request succesfully sent.");
 				}else {
-					System.out.println("Error while sending of answer to request.");
+					System.out.println("Error while sending of answer to request in UpdateScoreRequestThread.");
 				}
 				break;
 			case bet:
