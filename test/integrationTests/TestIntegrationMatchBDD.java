@@ -19,13 +19,14 @@ public class TestIntegrationMatchBDD {
 	@Before
 	public void setUp(){
 		TestUtility.CleanUpDB();
-		Joueur j3 = new Joueur(3, "WILLIAMS", "Serena", 1, false);
-		Joueur j4 = new Joueur(4, "SHARAPOVA", "Maria", 2, false);
+		TestUtility.addInfosForTestMatchDAO();
+		Joueur j11 = new Joueur(11, "WILLIAMS", "Serena", 1, false);
+		Joueur j15 = new Joueur(15, "SHARAPOVA", "Maria", 2, false);
 		String[][] tabSet3 = {{"6","2","6"},{"4","6","3"}};
 		String[] tabJeu3 = {"",""};
 		Score s3 = new Score(tabSet3, tabJeu3);
 
-		matchTest = new Match(3, j3, j4, s3, "2:06:51", 3, 3);
+		matchTest = new Match(1, j11, j15, s3, "2:06:51", 3, 3);
 	}
 
 	@After
