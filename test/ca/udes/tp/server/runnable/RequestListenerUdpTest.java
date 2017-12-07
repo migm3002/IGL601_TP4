@@ -27,8 +27,6 @@ public class RequestListenerUdpTest {
 	private ResponseSender responseSenderTest;
 	private int listeningPortTest;
 
-	private UpdateScoreRequestThread updateScoreRequestThreadTest;
-
 	@Before
 	public void setUp() {
 		Joueur j3 = new Joueur(3, "WILLIAMS", "Serena", 1, false);
@@ -83,13 +81,16 @@ public class RequestListenerUdpTest {
 		udpSenderThread.start();
 		Thread udpListenerThread = new Thread(listenerUdpTest);
 		udpListenerThread.start();
-		System.out.println("DEBUG : listening on port"+ listeningPortTest);
+		
 		try {
 			Thread.sleep(1500);
 		}catch(InterruptedException e) {
 			e.printStackTrace();
 		}
 		assertTrue("ListenerUdp has not received one of the test requests", listenerUdpTest.hasReceivedOnce());
+		
+		udpSenderThread.interrupt();
+		udpListenerThread.interrupt();
 	}
 
 }

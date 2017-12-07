@@ -5,14 +5,12 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
 import org.json.JSONObject;
 
 import ca.udes.tp.communication.Message;
 import ca.udes.tp.communication.Message.Method;
-import ca.udes.tp.object.ListeDesMatchs;
 import ca.udes.tp.server.Server;
 import ca.udes.tp.server.runnable.RequestListenerUdp;
 import ca.udes.tp.tool.JsonUtility;
@@ -46,7 +44,7 @@ public class UdpRequestSenderForTest implements Runnable {
 				//create packet to be sent to the server (contains the bytes representing the message)
 				DatagramPacket requestPacket = new DatagramPacket(bufferReq, bufferReq.length, InetAddress.
 						getByName(request.getClientAddress()), LISTENING_PORT_UDP_SERVER);
-				System.out.println("DEBUG : sending to port "+LISTENING_PORT_UDP_SERVER);
+
 				// send the packet to server
 				requestSocket.send(requestPacket);
 
