@@ -21,7 +21,12 @@ public class ChronoUpdater implements Runnable{
 
 	public void run() {
 		while(true) {
-
+			try {
+				Thread.sleep(30000);                 //Wait 30 seconds before updating chronometre again.
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+			
 			ListeDesMatchs currentListeDesMatchs = getServer().getCurrentListeDesMatchs();
 			for (Match match : currentListeDesMatchs.getListeMatchs()) {
 				String chronometre = match.getChronometre();
@@ -29,11 +34,7 @@ public class ChronoUpdater implements Runnable{
 					match.setChronometre(add30Secondes(chronometre));
 				}
 			}
-			try {
-				Thread.sleep(30000);                 //Wait 30 seconds before updating chronometre again.
-			} catch(InterruptedException ex) {
-				Thread.currentThread().interrupt();
-			}
+			
 		}
 	}
 

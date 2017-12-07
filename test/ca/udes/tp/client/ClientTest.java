@@ -6,6 +6,7 @@ import ca.udes.tp.client.view.ListMatchPanel;
 import ca.udes.tp.communication.Message;
 import ca.udes.tp.communication.Message.Method;
 import ca.udes.tp.object.ListeDesMatchs;
+import ca.udes.tp.object.Match;
 import ca.udes.tp.server.Server;
 import ca.udes.tp.server.runnable.RequestListenerUdp;
 import ca.udes.tp.tool.JsonUtility;
@@ -20,6 +21,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import org.json.JSONObject;
 import org.junit.Test;
@@ -112,8 +114,64 @@ public class ClientTest {
 	}
 	
 	@Test
-	public void testSendUdpRequest() {		
-		//on commpare les deux objets listeDesMatchs 
-		assertSame(this.listeDesMatchsTest, this.sendRequestBis(msg1));
+	public void testSendUdpRequest() {	
+		boolean same = true;
+		//On commpare les contenus des deux objets listeDesMatchs : 
+		//la liste attendue au debut et la liste reçue du serveur au debut de la demo
+		ListeDesMatchs list1 = this.listeDesMatchsTest;
+		ListeDesMatchs list2 = this.sendRequestBis(msg1);
+		ArrayList<Match> array1 = list1.getListeMatchs();
+		ArrayList<Match> array2 = list2.getListeMatchs();
+		
+		for(int i=0; i<array1.size(); i++) {
+			System.out.println(i);
+			//Joueurs
+			if(list1.get(i).getJoueur1().getId()!=list2.get(i).getJoueur1().getId()) {
+				same=false;
+			}
+			if(list1.get(i).getJoueur2().getId()!=list2.get(i).getJoueur2().getId()) {
+				same=false;
+			}
+			//Contestations
+			if(list1.get(i).getContestationsRestantesJoueur1()!=list2.get(i).getContestationsRestantesJoueur1()) {
+				same=false;
+			}
+			if(list1.get(i).getContestationsRestantesJoueur2()!=list2.get(i).getContestationsRestantesJoueur2()) {
+				same=false;
+			}
+			//Chronometre
+			if(!list1.get(i).getChronometre().equals(list2.get(i).getChronometre())) {
+				same=false;
+			}
+			
+			//TabSet
+			if(!list1.get(i).getScore().getTabSet()[0][0].equals(list2.get(i).getScore().getTabSet()[0][0])){
+				same=false;
+			}
+			if(!list1.get(i).getScore().getTabSet()[0][1].equals(list2.get(i).getScore().getTabSet()[0][1])){
+				same=false;
+			}
+			if(!list1.get(i).getScore().getTabSet()[0][2].equals(list2.get(i).getScore().getTabSet()[0][2])){
+				same=false;
+			}
+			if(!list1.get(i).getScore().getTabSet()[1][0].equals(list2.get(i).getScore().getTabSet()[1][0])){
+				same=false;
+			}
+			if(!list1.get(i).getScore().getTabSet()[1][1].equals(list2.get(i).getScore().getTabSet()[1][1])){
+				same=false;
+			}
+			if(!list1.get(i).getScore().getTabSet()[1][2].equals(list2.get(i).getScore().getTabSet()[1][2])){
+				same=false;
+			}
+			
+			//TabJeu
+			if(!list1.get(i).getScore().getTabJeu()[0].equals(list2.get(i).getScore().getTabJeu()[0])){
+				same=false;
+			}
+			if(!list1.get(i).getScore().getTabJeu()[1].equals(list2.get(i).getScore().getTabJeu()[1])){
+				same=false;
+			}
+		}
+		assertTrue("La liste des matchs reçue est differente de celle attendue",same);
 	}
 }
