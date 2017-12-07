@@ -28,7 +28,7 @@ import org.junit.Test;
 
 public class ClientTest {
 	
-	/*private Server serverTest = new Server();
+	private Server serverTest = new Server();
 	private ListeDesMatchs listeDesMatchsTest = new ListeDesMatchs();
 	
 	private Message msg1 = new Message (true, 0, Method.updateScore, Message.EMPTY_ARGUMENT, RequestHandlerClient.HOME_ADDRESS, RequestHandlerClient.LISTENING_PORT_UDP_CLIENT);
@@ -108,6 +108,7 @@ public class ClientTest {
 				responseSocket.close();
 			}
 		}
+		this.serverTest.stopListening();
 		return listMatchs;
 	}
 	
@@ -171,5 +172,5 @@ public class ClientTest {
 			}
 		}
 		assertTrue("La liste des matchs reçue est differente de celle attendue",same);
-	}*/
+	}
 }

@@ -92,6 +92,14 @@ public class Server implements Runnable{
 		System.out.println("Server is started");
 	}
 
+	public void stopListening() {
+		if(tcpThread!=null) {
+			tcpThread.interrupt();
+		}
+		if(udpThread!=null) {
+			udpThread.interrupt();
+		}
+	}
 	
 	public ResponseSender getResponseSender() {
 		return responseSender;
