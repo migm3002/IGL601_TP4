@@ -44,7 +44,7 @@ public class RequestListenerUdpTest {
 		threadPoolTest = Executors.newFixedThreadPool(Server.THREAD_POOL_SIZE);
 		serverTest = EasyMock.createMock(Server.class);
 		responseSenderTest = EasyMock.createMock(ResponseSender.class);
-		listeningPortTest = Server.DEFAULT_LISTENING_PORT_UDP;
+		listeningPortTest = Server.DEFAULT_LISTENING_PORT_UDP+1;
 
 		EasyMock.expect(serverTest.getResponseSender()).andStubReturn(responseSenderTest);
 		EasyMock.expect(serverTest.getThreadPool()).andStubReturn(threadPoolTest);

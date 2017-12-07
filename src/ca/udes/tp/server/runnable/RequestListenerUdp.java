@@ -46,8 +46,9 @@ public class RequestListenerUdp implements Runnable {
 
 		try {
 			byte[] buffer = new byte[BUFFER_SIZE];
+
 			requestSocket= new DatagramSocket(getListeningPort()); 
-			
+
 			while(true) {
 				
 				DatagramPacket incomingPacket = new DatagramPacket(buffer, buffer.length);

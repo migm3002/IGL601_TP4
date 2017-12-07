@@ -48,7 +48,7 @@ public class UdpRequestSenderForTest implements Runnable {
 				// send the packet to server
 				requestSocket.send(requestPacket);
 
-				System.out.println("DEBUG : request for listMatch sent");
+				System.out.println("DEBUG : request for listMatch sent (test)");
 
 			} else {
 				System.out.println("ERROR : jsonobject size is larger than limit");
