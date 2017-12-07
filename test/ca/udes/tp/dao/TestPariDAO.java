@@ -37,7 +37,7 @@ public class TestPariDAO {
 	
 	@Test
 	public void testGetAllWinningBets() {
-		assertTrue("GetAllWinningBets is different from the winning bet", (PariDAO.getAllWinningBets(2)==(51.86)));
+		assertTrue("GetAllWinningBets is different from the winning bet", (PariDAO.getAllWinningBets(2)==(22.45)));
 	}
 	
 	@Test
@@ -48,7 +48,7 @@ public class TestPariDAO {
 	@Test
 	public void testGetListOfWinners() {
 		ArrayList<Integer> listWinners = new ArrayList <Integer>();
-		listWinners.add(1);
+		listWinners.add(11);
 		
 		assertTrue("GetBetForGivenGambler returns the bad bet", (PariDAO.getListOfWinners(2)==listWinners));
 	}
