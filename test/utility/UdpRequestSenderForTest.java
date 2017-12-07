@@ -26,48 +26,42 @@ public class UdpRequestSenderForTest implements Runnable {
 	private static final String HOME_ADDRESS = "127.0.0.1";
 
 	public void run() {
-		for(int i=0; i<4; i++) {
-			DatagramSocket requestSocket = null;
+		DatagramSocket requestSocket = null;
 
-			try {
-				try {
-					Thread.sleep(200);
-				}catch(InterruptedException e) {
-					e.printStackTrace();
-				}
-				Message request = new Message(true, 1, Method.updateScore, Message.EMPTY_ARGUMENT,
-						HOME_ADDRESS, LISTENING_PORT_UDP_CLIENT);
+		try {
 
-				// create socket from which the request is sent
-				requestSocket = new DatagramSocket(SENDING_PORT_UDP_CLIENT, InetAddress.getByName(HOME_ADDRESS));
+			Message request = new Message(true, 1, Method.updateScore, Message.EMPTY_ARGUMENT,
+					HOME_ADDRESS, LISTENING_PORT_UDP_CLIENT+1);
 
-				// convert Message to JSONObject
-				JSONObject jsonMsg = JsonUtility.convertMessageIntoJsonMessage(request);
-				// convert JSONObject to bytes
-				byte[] bufferReq = UdpUtility.convertToBytes(jsonMsg.toString());
+			// create socket from which the request is sent
+			requestSocket = new DatagramSocket(SENDING_PORT_UDP_CLIENT, InetAddress.getByName(HOME_ADDRESS));
 
-				if(bufferReq.length <= RequestListenerUdp.BUFFER_SIZE) {	// if the buffer is smaller than max size
-					//create packet to be sent to the server (contains the bytes representing the message)
-					DatagramPacket requestPacket = new DatagramPacket(bufferReq, bufferReq.length, InetAddress.getByName(request.getClientAddress()), LISTENING_PORT_UDP_SERVER);
-					// send the packet to server
-					requestSocket.send(requestPacket);
+			// convert Message to JSONObject
+			JSONObject jsonMsg = JsonUtility.convertMessageIntoJsonMessage(request);
+			// convert JSONObject to bytes
+			byte[] bufferReq = UdpUtility.convertToBytes(jsonMsg.toString());
 
-					System.out.println("DEBUG : request for listMatch sent (test)");
+			if(bufferReq.length <= RequestListenerUdp.BUFFER_SIZE) {	// if the buffer is smaller than max size
+				//create packet to be sent to the server (contains the bytes representing the message)
+				DatagramPacket requestPacket = new DatagramPacket(bufferReq, bufferReq.length, InetAddress.getByName(request.getClientAddress()), LISTENING_PORT_UDP_SERVER);
+				// send the packet to server
+				requestSocket.send(requestPacket);
 
-				} else {
-					System.out.println("ERROR : jsonobject size is larger than limit");
-				}
+				System.out.println("DEBUG : request for listMatch sent (test)");
 
-			} catch (SocketException e) {
-				e.printStackTrace();
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}finally {
-				if(requestSocket != null) {
-					requestSocket.close();
-				}
+			} else {
+				System.out.println("ERROR : jsonobject size is larger than limit");
+			}
+
+		} catch (SocketException e) {
+			e.printStackTrace();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			if(requestSocket != null) {
+				requestSocket.close();
 			}
 		}
 	}
