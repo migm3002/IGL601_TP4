@@ -27,8 +27,8 @@ public class RequestListenerUdpTest {
 		responseSenderTest = EasyMock.createMock(ResponseSender.class);
 		listeningPortTest = Server.DEFAULT_LISTENING_PORT_UDP;
 		
-		EasyMock.expect(serverTest.getResponseSender()).andReturn(responseSenderTest);
-		EasyMock.expect(serverTest.getThreadPool()).andReturn(threadPoolTest);
+		EasyMock.expect(serverTest.getResponseSender()).andStubReturn(responseSenderTest);
+		EasyMock.expect(serverTest.getThreadPool()).andStubReturn(threadPoolTest);
 		EasyMock.replay(serverTest);
 		
 	}
@@ -37,6 +37,9 @@ public class RequestListenerUdpTest {
 	public void testConstructor1() {
 		RequestListenerUdp listenerUdpTest = new RequestListenerUdp(listeningPortTest, serverTest);
 		assertTrue("ListenerUdp server is not the one given in parameter",listenerUdpTest.getServer()==serverTest);
+		assertTrue("ListenerUdp threadPool is not the one given in parameter", listenerUdpTest.getThreadPool()==serverTest.getThreadPool());
+		assertTrue("ListenerUdp responseSender is not the one given in parameter", listenerUdpTest.getResponseSender()==serverTest.getResponseSender());
+		assertTrue("ListenerUdp listening port is not the one given in parameter", listenerUdpTest.getListeningPort() == listeningPortTest);
 		EasyMock.reset(serverTest);
 	}
 	
