@@ -50,6 +50,50 @@ public class MatchTest {
 	
 	
 	@Test
+	public void testGetId() {
+		Assert.assertEquals(1, m1.getId());
+	}
+	
+	@Test
+	public void testGetJoueur1() {
+		Assert.assertEquals(1, m1.getJoueur1().getId());
+		Assert.assertEquals("Rafael", m1.getJoueur1().getPrenom());
+		Assert.assertEquals("NADAL", m1.getJoueur1().getNom());
+		Assert.assertEquals(1, m1.getJoueur1().getClassement());
+		Assert.assertEquals(true, m1.getJoueur1().getService());
+	}
+	
+	@Test
+	public void testGetJoueur2() {
+		Assert.assertEquals(2, m1.getJoueur2().getId());
+		Assert.assertEquals("Roger", m1.getJoueur2().getPrenom());
+		Assert.assertEquals("FEDERER", m1.getJoueur2().getNom());
+		Assert.assertEquals(2, m1.getJoueur2().getClassement());
+		Assert.assertEquals(false, m1.getJoueur2().getService());
+	}
+	
+	@Test
+	public void testGetScore() {
+		Assert.assertEquals("6", m1.getScore().getTabSet()[0][0]);
+		Assert.assertEquals("0", m1.getScore().getTabJeu()[0]);
+	}
+	
+	@Test
+	public void testGetChronometre() {
+		Assert.assertEquals("1:38:12",m1.getChronometre());
+	}
+	
+	@Test
+	public void testGetConstestationsRestantesJoueur1() {
+		Assert.assertEquals(3, m1.getContestationsRestantesJoueur1());
+	}
+	
+	@Test
+	public void testGetConstestationsRestantesJoueur2() {
+		Assert.assertEquals(3, m1.getContestationsRestantesJoueur2());
+	}
+	
+	@Test
 	public void testIsSet1OverTrue() {
 		Assert.assertTrue("First set is not over", m1.isSet1Finished());
 		Assert.assertTrue("First set is not over", m3.isSet1Finished());
@@ -109,19 +153,27 @@ public class MatchTest {
 		Assert.assertTrue("j1test is not serving", mtest.getJoueur1().getService());
 		Assert.assertFalse("j2test is serving", mtest.getJoueur2().getService());
 		mtest.changeService();
-		Assert.assertFalse("j1test in serving", mtest.getJoueur1().getService());
+		Assert.assertFalse("j1test is serving", mtest.getJoueur1().getService());
 		Assert.assertTrue("j2test is not serving", mtest.getJoueur2().getService());
 	}
 	
 	@Test
 	public void testAddPoint() {
 
-		Assert.assertEquals(m1.getScore().getTabJeu()[0], "0");
-		Assert.assertEquals(m1.getScore().getTabJeu()[1], "30");
+		Assert.assertEquals("0", m1.getScore().getTabJeu()[0]);
+		Assert.assertEquals("30", m1.getScore().getTabJeu()[1]);
 		
 		m1.addPoint(1, false);
 		
-		Assert.assertEquals(m1.getScore().getTabJeu()[0], "15");
-		Assert.assertEquals(m1.getScore().getTabJeu()[1], "30");
+		Assert.assertEquals("15", m1.getScore().getTabJeu()[0]);
+		Assert.assertEquals("30", m1.getScore().getTabJeu()[1]);
+	}
+	
+	@Test
+	public void testDecreaseContestationPointFor() {
+		m2.decreaseContestationPointFor(1);
+		m2.decreaseContestationPointFor(2);
+		Assert.assertEquals(1, m2.getContestationsRestantesJoueur1());
+		Assert.assertEquals(2, m2.getContestationsRestantesJoueur2());
 	}
 }
