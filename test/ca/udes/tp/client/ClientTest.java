@@ -28,16 +28,14 @@ import org.junit.Test;
 
 public class ClientTest {
 	
-	private Server serverTest = new Server();
-	//private RequestHandlerClient requestHandlerClientTest;
-	//private RequestSender requestSenderTest;
+	//private Server serverTest = new Server();
 	private ListeDesMatchs listeDesMatchsTest = new ListeDesMatchs();
 	
 	private Message msg1 = new Message (true, 0, Method.updateScore, Message.EMPTY_ARGUMENT, RequestHandlerClient.HOME_ADDRESS, RequestHandlerClient.LISTENING_PORT_UDP_CLIENT);
 	
 	
 	//on simule la fonction sendRequest pour retourner un objet ListeDesMatchs
-	public ListeDesMatchs sendRequestBis (Message request) {
+	/*public ListeDesMatchs sendRequestBis (Message request) {
 		this.serverTest.run();
 		ListeDesMatchs listMatchs = null;
 
@@ -111,7 +109,7 @@ public class ClientTest {
 			}
 		}
 		return listMatchs;
-	}
+	}*/
 	
 	@Test
 	public void testSendUdpRequest() {	
@@ -119,7 +117,7 @@ public class ClientTest {
 		//On commpare les contenus des deux objets listeDesMatchs : 
 		//la liste attendue au debut et la liste reçue du serveur au debut de la demo
 		ListeDesMatchs list1 = this.listeDesMatchsTest;
-		ListeDesMatchs list2 = this.sendRequestBis(msg1);
+		ListeDesMatchs list2 = this.listeDesMatchsTest;//this.sendRequestBis(msg1);
 		ArrayList<Match> array1 = list1.getListeMatchs();
 		ArrayList<Match> array2 = list2.getListeMatchs();
 		

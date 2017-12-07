@@ -35,7 +35,6 @@ public class ResponseSender{
 	 * @return true if response is successfully sent.
 	 */
 	public synchronized boolean sendUdpResponse(Message response){
-		System.out.println("debug4");
 		boolean sent=false;
 		
 		JSONObject jsonMessage = JsonUtility.convertMessageIntoJsonMessage(response);
