@@ -5,6 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 import ca.udes.tp.dao.TestPariDAO;
+import ca.udes.tp.object.JoueurTest;
 import ca.udes.tp.object.MatchTest;
 import integrationTests.TestIntegrationMatchBDD;
 
@@ -12,6 +13,7 @@ import integrationTests.TestIntegrationMatchBDD;
 @SuiteClasses(
 		{
 			MatchTest.class,
+			JoueurTest.class,
 			TestIntegrationMatchBDD.class,
 			TestPariDAO.class
 		}
