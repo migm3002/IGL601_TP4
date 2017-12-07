@@ -108,7 +108,6 @@ public class ClientTest {
 				responseSocket.close();
 			}
 		}
-		this.serverTest.stopListening();
 		return listMatchs;
 	}
 	
