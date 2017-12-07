@@ -43,6 +43,12 @@ public class Server implements Runnable{
 
 
 
+	private Thread chronoUpdaterThread;
+	private Thread eventsGeneratorThread;
+	private Thread eventsUpdaterThread;
+	private Thread dbManagerThread;
+	private Thread udpThread;
+	private Thread tcpThread;
 
 
 	/**
@@ -70,12 +76,12 @@ public class Server implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 
-		Thread chronoUpdaterThread = new Thread(chronoUpdater);
-		Thread eventsGeneratorThread = new Thread(eventsGenerator);
-		Thread eventsUpdaterThread = new Thread(eventsUpdater);
-		Thread dbManagerThread = new Thread(dbManager);
-		Thread udpThread = new Thread(listenerUdp);
-		Thread tcpThread = new Thread(listenerTcp);
+		chronoUpdaterThread = new Thread(chronoUpdater);
+		eventsGeneratorThread = new Thread(eventsGenerator);
+		eventsUpdaterThread = new Thread(eventsUpdater);
+		dbManagerThread = new Thread(dbManager);
+		udpThread = new Thread(listenerUdp);
+		tcpThread = new Thread(listenerTcp);
 
 		dbManagerThread.start();
 		udpThread.start();
@@ -86,6 +92,15 @@ public class Server implements Runnable{
 		System.out.println("Server is started");
 	}
 
+	public void stopListening() {
+		if(tcpThread!=null) {
+			tcpThread.interrupt();
+		}
+		if(udpThread!=null) {
+			udpThread.interrupt();
+		}
+	}
+	
 	public ResponseSender getResponseSender() {
 		return responseSender;
 	}
