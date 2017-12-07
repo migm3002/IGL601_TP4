@@ -83,8 +83,9 @@ public class RequestListenerUdpTest {
 		udpSenderThread.start();
 		Thread udpListenerThread = new Thread(listenerUdpTest);
 		udpListenerThread.start();
+		System.out.println("DEBUG : listening on port"+ listeningPortTest);
 		try {
-			Thread.sleep(800);
+			Thread.sleep(2000);
 		}catch(InterruptedException e) {
 			e.printStackTrace();
 		}

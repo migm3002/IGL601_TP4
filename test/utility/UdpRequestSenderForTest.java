@@ -45,6 +45,7 @@ public class UdpRequestSenderForTest implements Runnable {
 				//create packet to be sent to the server (contains the bytes representing the message)
 				DatagramPacket requestPacket = new DatagramPacket(bufferReq, bufferReq.length, InetAddress.
 						getByName(request.getClientAddress()), LISTENING_PORT_UDP_SERVER);
+				System.out.println("DEBUG : sending to port "+LISTENING_PORT_UDP_SERVER);
 				// send the packet to server
 				requestSocket.send(requestPacket);
 
