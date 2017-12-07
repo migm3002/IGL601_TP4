@@ -32,9 +32,6 @@ public class TestPariDAO {
 	
 	@Test
 	public void testGetTotalBet(){
-		PariDAO.placeBet(1, 2, 11, 22.45);
-		PariDAO.placeBet(2, 2, 15, 51.86);
-		
 		assertTrue("GetTotalBet is different from all bet.", PariDAO.getTotalBets(2)==(22.45+51.86));
 	}
 	
