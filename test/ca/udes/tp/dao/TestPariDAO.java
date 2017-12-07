@@ -17,6 +17,7 @@ public class TestPariDAO {
 	@Before
 	public void setUp(){
 		TestUtility.CleanUpDB();
+		TestUtility.addInfosForTestPariDAO();
 	}
 
 	@After
@@ -31,52 +32,38 @@ public class TestPariDAO {
 	
 	@Test
 	public void testGetTotalBet(){
-		PariDAO.placeBet(4, 3, 4, 22.45);
-		PariDAO.placeBet(3, 3, 3, 51.86);
+		PariDAO.placeBet(1, 2, 11, 22.45);
+		PariDAO.placeBet(2, 2, 15, 51.86);
 		
-		assertTrue("GetTotalBet is different from all bet.", PariDAO.getTotalBets(3)==(22.45+51.86));
+		assertTrue("GetTotalBet is different from all bet.", PariDAO.getTotalBets(2)==(22.45+51.86));
 	}
 	
 	@Test
 	public void testGetAllWinningBets() {
-		PariDAO.placeBet(4, 3, 4, 22.45);
-		PariDAO.placeBet(3, 3, 3, 51.86);
-		
-		assertTrue("GetAllWinningBets is different from the winning bet", (PariDAO.getAllWinningBets(3)==(51.86)));
+		assertTrue("GetAllWinningBets is different from the winning bet", (PariDAO.getAllWinningBets(2)==(51.86)));
 	}
 	
 	@Test
 	public void testGetBetForGivenGambler() {
-		PariDAO.placeBet(4, 3, 4, 22.45);
-		PariDAO.placeBet(3, 3, 3, 51.86);
-		
-		assertTrue("GetBetForGivenGambler returns the bad bet", (PariDAO.getBetForGivenGambler(3, 4)==22.45));
+		assertTrue("GetBetForGivenGambler returns the bad bet", (PariDAO.getBetForGivenGambler(2, 1)==22.45));
 	}
 	
 	@Test
 	public void testGetListOfWinners() {
-		PariDAO.placeBet(4, 3, 4, 22.45);
-		PariDAO.placeBet(3, 3, 3, 51.86);
 		ArrayList<Integer> listWinners = new ArrayList <Integer>();
-		listWinners.add(3);
+		listWinners.add(1);
 		
-		assertTrue("GetBetForGivenGambler returns the bad bet", (PariDAO.getListOfWinners(3)==listWinners));
+		assertTrue("GetBetForGivenGambler returns the bad bet", (PariDAO.getListOfWinners(2)==listWinners));
 	}
 	
 	@Test
 	public void testHasBetOnWinner() {
-		PariDAO.placeBet(4, 3, 4, 22.45);
-		PariDAO.placeBet(3, 3, 3, 51.86);
-		
-		assertTrue("Pari 3 has bet on winner", PariDAO.hasBetOnWinner(3, 3));
+		assertTrue("idParieur 1 has bet on winner", PariDAO.hasBetOnWinner(2, 1));
 	}
 	
 	@Test
-	public void testNotHasBetOnWinner() {
-		PariDAO.placeBet(4, 3, 4, 22.45);
-		PariDAO.placeBet(3, 3, 3, 51.86);
-		
-		assertFalse("Pari 4 doesn't have bet on winner", PariDAO.hasBetOnWinner(3, 4));
+	public void testNotHasBetOnWinner() {		
+		assertFalse("idParieur 2 doesn't have bet on winner", PariDAO.hasBetOnWinner(2, 2));
 	}
 	
 	

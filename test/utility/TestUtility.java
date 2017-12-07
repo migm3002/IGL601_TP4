@@ -56,6 +56,27 @@ public final class TestUtility {
 			"	FOREIGN KEY(idJoueur) REFERENCES Joueur(idJoueur)\r\n" + 
 			");";
 
+	private static final String SCRIPT_ADD_PARIDAO = "INSERT INTO Joueur(idJoueur, nom, prenom, classement)\r\n" + 
+			"VALUES(1, 'Nadal', 'Rafael', 1);\r\n" + 
+			"INSERT INTO Joueur(idJoueur, nom, prenom, classement)\r\n" + 
+			"VALUES(3, 'Federer', 'Roger', 2);\r\n" + 
+			"INSERT INTO Joueur(idJoueur, nom, prenom, classement)\r\n" + 
+			"VALUES(15, 'Sharapova', 'Maria', 86);\r\n" + 
+			"INSERT INTO Joueur(idJoueur, nom, prenom, classement)\r\n" + 
+			"VALUES(11, 'Williams', 'Serena', 24);\r\n" + 
+			"INSERT INTO Parieur(idParieur, nom, prenom)\r\n" + 
+			"VALUES(1, 'Barre', 'Mathias');\r\n" + 
+			"INSERT INTO Parieur(idParieur, nom, prenom)\r\n" + 
+			"VALUES(2, 'Cosneau', 'Alexandre');\r\n" + 
+			"INSERT INTO Rencontre(idMatch, vainqueur)\r\n" + 
+			"VALUES(1,null);\r\n" + 
+			"INSERT INTO Rencontre(idMatch, vainqueur)\r\n" + 
+			"VALUES(2,11);\r\n" + 
+			"INSERT INTO Pari(idPari, idParieur, idMatch, idJoueur, montant)\r\n" + 
+			"VALUES (1,1,2,11,22.45);\r\n" + 
+			"INSERT INTO Pari(idPari, idParieur, idMatch, idJoueur, montant)\r\n" + 
+			"VALUES (2,2,2,15,51.86);";
+	
 	public static void CleanUpDB() {
 
 		PreparedStatement cleanPs = null;
@@ -64,6 +85,29 @@ public final class TestUtility {
 		if(connection != null) {
 			try {
 				cleanPs = connection.prepareStatement(CLEAN_UP_REQUEST);
+				cleanPs.executeUpdate();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				if(cleanPs!=null) {
+					try {
+						cleanPs.close();
+					}catch(SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}
+	
+	public static void addInfosForTestPariDAO() {
+
+		PreparedStatement cleanPs = null;
+
+		Connection connection = ConnectionDB.connection();
+		if(connection != null) {
+			try {
+				cleanPs = connection.prepareStatement(SCRIPT_ADD_PARIDAO);
 				cleanPs.executeUpdate();
 			}catch(SQLException e) {
 				e.printStackTrace();

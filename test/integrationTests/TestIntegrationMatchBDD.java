@@ -10,6 +10,7 @@ import ca.udes.tp.dao.MatchDAO;
 import ca.udes.tp.object.Joueur;
 import ca.udes.tp.object.Match;
 import ca.udes.tp.object.Score;
+import utility.TestUtility;
 
 public class TestIntegrationMatchBDD {
 
@@ -17,6 +18,7 @@ public class TestIntegrationMatchBDD {
 
 	@Before
 	public void setUp(){
+		TestUtility.CleanUpDB();
 		Joueur j3 = new Joueur(3, "WILLIAMS", "Serena", 1, false);
 		Joueur j4 = new Joueur(4, "SHARAPOVA", "Maria", 2, false);
 		String[][] tabSet3 = {{"6","2","6"},{"4","6","3"}};
@@ -28,7 +30,7 @@ public class TestIntegrationMatchBDD {
 
 	@After
 	public void tearDown(){
-
+		TestUtility.CleanUpDB();
 	}
 
 	@Test
