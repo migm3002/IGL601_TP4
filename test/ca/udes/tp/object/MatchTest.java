@@ -41,12 +41,17 @@ public class MatchTest {
 	private String[] tabJeu6 = {"0","0"};
 	private Score s6 = new Score(tabSet6, tabJeu6);
 	
+	private String[][] tabSet7 = {{"4","6","3"},{"6","2","6"}};
+	private String[] tabJeu7 = {"",""};
+	private Score s7 = new Score(tabSet7, tabJeu7);
+	
 	private Match m1 = new Match(1, j1, j2, s1, "1:38:12", 3, 3);
 	private Match m2 = new Match(2, j1, j2, s2, "0:31:45", 2, 3);
 	private Match m3 = new Match(3, j3, j4, s3, "2:06:51", 3, 3);
 	private Match m4 = new Match(4, j3, j4, s4, "2:28:01", 3, 3);
 	private Match m5 = new Match(5, j3, j4, s5, "2:51:38", 3, 3);
 	private Match m6 = new Match(6, j3, j4, s6, "2:37:26", 3, 3);
+	private Match m7 = new Match(3, j3, j4, s7, "2:06:51", 3, 3);
 	
 	
 	@Test
@@ -113,6 +118,8 @@ public class MatchTest {
 	public void testIsEndedFalse() {
 		Assert.assertFalse("Match is over", m1.isEnded());
 		Assert.assertFalse("Match is over", m2.isEnded());
+		m2.changeService();
+		Assert.assertFalse(m2.isEnded());
 	}
 	
 	@Test
@@ -131,6 +138,7 @@ public class MatchTest {
 	@Test
 	public void testGetWinnerMatchOver() {
 		Assert.assertSame("Winner is not j3", j3, m3.getWinner());
+		Assert.assertSame(j4, m7.getWinner());
 	}
 	
 	@Test
@@ -155,6 +163,13 @@ public class MatchTest {
 		mtest.changeService();
 		Assert.assertFalse("j1test is serving", mtest.getJoueur1().getService());
 		Assert.assertTrue("j2test is not serving", mtest.getJoueur2().getService());
+	}
+	
+	@Test
+	public void testChangeServiceMatchOver() {
+		m3.changeService();
+		Assert.assertFalse(m3.getJoueur1().getService());
+		Assert.assertFalse(m3.getJoueur2().getService());
 	}
 	
 	@Test
