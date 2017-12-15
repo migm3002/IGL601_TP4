@@ -22,6 +22,7 @@ public class TestPariDAO {
 		TestUtility.CleanUpDB();
 		TestUtility.addInfosForTestPariDAO();
 		nf.setMaximumIntegerDigits(2);
+		nf.setMaximumFractionDigits(2);
 		nf.setGroupingUsed(false);
 	}
 
@@ -67,6 +68,38 @@ public class TestPariDAO {
 	@Test
 	public void testNotHasBetOnWinner() {		
 		assertFalse("idParieur 2 doesn't have bet on winner", PariDAO.hasBetOnWinner(2, 2));
+	}
+	
+	@Test
+	public void testCalculateEarningsWinningGambler() {
+		try {
+			assertEquals("parieur 1 lost their bet", nf.format(55.73), nf.format(PariDAO.calculateEarnings(2, 1)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test 
+	public void testCalculateEarningsLosingGambler() {
+		try {
+			assertEquals("parieur 2 won their bet", nf.format(0.00), nf.format(PariDAO.calculateEarnings(2, 2)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testCalculateEarningsMatchNotOver() {
+		try {
+			assertFalse(nf.format(PariDAO.calculateEarnings(1, 1)).equals(nf.format(55.73)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testListOfEarnings() {
+		assertEquals(nf.format(55.73), nf.format(PariDAO.listOfEarnings(2).get(1)));
 	}
 	
 	

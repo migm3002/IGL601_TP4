@@ -75,7 +75,9 @@ public final class TestUtility {
 			"INSERT INTO Pari(idPari, idParieur, idMatch, idJoueur, montant)\r\n" + 
 			"VALUES (1,1,2,11,22.45);\r\n" + 
 			"INSERT INTO Pari(idPari, idParieur, idMatch, idJoueur, montant)\r\n" + 
-			"VALUES (2,2,2,15,51.86);";
+			"VALUES (2,2,2,15,51.86);\r\n" +
+			"INSERT INTO Pari(idPari, idParieur, idMatch, idJoueur, montant)\r\n" + 
+			"VALUES (2,2,1,15,51.86);";
 	
 	private static final String SCRIPT_ADD_MATCHDAO = "INSERT INTO Joueur(idJoueur, nom, prenom, classement)\r\n" + 
 			"VALUES(15, 'Sharapova', 'Maria', 86);\r\n" + 
