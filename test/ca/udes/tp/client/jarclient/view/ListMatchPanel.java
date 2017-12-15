@@ -1,4 +1,4 @@
-package ca.udes.tp.client.view;
+package ca.udes.tp.client.jarclient.view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -14,9 +14,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import ca.udes.tp.client.controller.RequestHandlerClient;
-import ca.udes.tp.client.controller.RequestSender;
-import ca.udes.tp.client.controller.RequestHandlerClient.MethodClient;
+import ca.udes.tp.client.jarclient.controller.RequestHandlerClient;
+import ca.udes.tp.client.jarclient.controller.RequestSender;
+import ca.udes.tp.client.jarclient.controller.RequestHandlerClient.MethodClient;
 import ca.udes.tp.object.ListeDesMatchs;
 
 public class ListMatchPanel extends JPanel {

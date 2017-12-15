@@ -1,6 +1,6 @@
 package ca.udes.tp;
 
-import ca.udes.tp.client.view.TournoiTennisFrame;
+import ca.udes.tp.client.jarclient.view.TournoiTennisFrame;
 import ca.udes.tp.server.Server;
 
 

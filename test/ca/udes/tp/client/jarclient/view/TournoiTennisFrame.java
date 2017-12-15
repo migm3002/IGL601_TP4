@@ -1,4 +1,4 @@
-package ca.udes.tp.client.view;
+package ca.udes.tp.client.jarclient.view;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -10,9 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import ca.udes.tp.client.controller.RequestHandlerClient;
-import ca.udes.tp.client.controller.RequestSender;
-import ca.udes.tp.client.controller.RequestHandlerClient.MethodClient;
+import ca.udes.tp.client.jarclient.controller.RequestHandlerClient;
+import ca.udes.tp.client.jarclient.controller.RequestSender;
+import ca.udes.tp.client.jarclient.controller.RequestHandlerClient.MethodClient;
 import ca.udes.tp.object.ListeDesMatchs;
 import ca.udes.tp.object.Match;
 import ca.udes.tp.object.Pari;

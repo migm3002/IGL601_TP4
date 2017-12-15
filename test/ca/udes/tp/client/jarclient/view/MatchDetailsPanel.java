@@ -1,4 +1,4 @@
-package ca.udes.tp.client.view;
+package ca.udes.tp.client.jarclient.view;
 
 import java.awt.Color;
 import java.awt.Dimension;

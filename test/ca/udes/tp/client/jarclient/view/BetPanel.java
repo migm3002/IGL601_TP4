@@ -1,4 +1,4 @@
-package ca.udes.tp.client.view;
+package ca.udes.tp.client.jarclient.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,8 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-import ca.udes.tp.client.controller.RequestHandlerClient;
-import ca.udes.tp.client.controller.RequestHandlerClient.MethodClient;
+import ca.udes.tp.client.jarclient.controller.RequestHandlerClient;
+import ca.udes.tp.client.jarclient.controller.RequestHandlerClient.MethodClient;
 import ca.udes.tp.object.Joueur;
 import ca.udes.tp.object.ListeDesMatchs;
 import ca.udes.tp.object.Match;

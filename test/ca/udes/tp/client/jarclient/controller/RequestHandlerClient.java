@@ -1,4 +1,4 @@
-package ca.udes.tp.client.controller;
+package ca.udes.tp.client.jarclient.controller;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import ca.udes.tp.client.view.BetPanel;
+import ca.udes.tp.client.jarclient.view.BetPanel;
 import ca.udes.tp.communication.Message;
 import ca.udes.tp.communication.Message.Method;
 import ca.udes.tp.object.Pari;
