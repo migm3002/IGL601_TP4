@@ -249,7 +249,6 @@ public final class PariDAO {
 
 				if(rsListWinners.next()) {
 					listWinners.add(rsListWinners.getInt(1));
-					System.out.println("Winner : " + rsListWinners.getInt(1));
 				} else {
 					System.out.println("No winning bets for this match");
 				}

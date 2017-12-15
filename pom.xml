@@ -56,7 +56,7 @@
 				<configuration>
 					<configLocation>checkstyle.xml</configLocation>
 					<excludes>
-						<exclude>scr/ca/udes/tp/client</exclude>
+						scr/ca/udes/tp/client/**
 					</excludes>
 				</configuration>
 				<reportSets>
