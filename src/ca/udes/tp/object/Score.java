@@ -34,13 +34,5 @@ public class Score {
 		return this.tabJeu;
 	}
 	
-	//For a debug purpose only
-	public String toString() {
-		String[][] tabSet = getTabSet();
-		String[] tabJeu = getTabJeu();
-		
-		return tabSet[0][0]+"|"+tabSet[0][1]+"|"+tabSet[0][2]+"  "+tabJeu[0]+"\n "
-			  +tabSet[1][0]+"|"+tabSet[1][1]+"|"+tabSet[1][2]+"  "+tabJeu[1];
-	}
 
 }

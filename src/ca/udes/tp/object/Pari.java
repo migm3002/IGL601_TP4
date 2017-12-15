@@ -1,6 +1,5 @@
 package ca.udes.tp.object;
 
-
 public class Pari{
 
 	private int idJoueur;

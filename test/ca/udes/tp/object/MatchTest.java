@@ -163,6 +163,9 @@ public class MatchTest {
 		mtest.changeService();
 		Assert.assertFalse("j1test is serving", mtest.getJoueur1().getService());
 		Assert.assertTrue("j2test is not serving", mtest.getJoueur2().getService());
+		mtest.changeService();
+		Assert.assertTrue("j1test is not serving", mtest.getJoueur1().getService());
+		Assert.assertFalse("j2test is serving", mtest.getJoueur2().getService());
 	}
 	
 	@Test
@@ -185,10 +188,18 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void testDecreaseContestationPointFor() {
+	public void testDecreaseContestationPointForWithGoodValues() {
 		m2.decreaseContestationPointFor(1);
 		m2.decreaseContestationPointFor(2);
 		Assert.assertEquals(1, m2.getContestationsRestantesJoueur1());
 		Assert.assertEquals(2, m2.getContestationsRestantesJoueur2());
 	}
+	
+	@Test
+	public void testDecreaseContestationPointForWithWrongValues() {
+		m2.decreaseContestationPointFor(0);
+		Assert.assertEquals(2, m2.getContestationsRestantesJoueur1());
+	}
+	
+	
 }

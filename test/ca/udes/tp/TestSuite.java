@@ -9,15 +9,11 @@ import ca.udes.tp.object.JoueurTest;
 import ca.udes.tp.object.MatchTest;
 import integrationTests.TestIntegrationMatchBDD;
 
-@RunWith(Suite.class)
+/*@RunWith(Suite.class)
 @SuiteClasses(
 		{
-			MatchTest.class,
-			JoueurTest.class,
-			TestIntegrationMatchBDD.class,
-			TestPariDAO.class
 		}
-	)
+	)*/
 public class TestSuite {
 
 }
