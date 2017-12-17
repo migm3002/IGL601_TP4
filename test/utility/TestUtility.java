@@ -86,6 +86,8 @@ public final class TestUtility {
 			"INSERT INTO Rencontre(idMatch, vainqueur)\r\n" + 
 			"VALUES(1,null);";
 	
+	//private static final String SCRIPT_ADD_DB_MANAGER = "INSERT"
+	
 	public static void CleanUpDB() {
 
 		PreparedStatement cleanPs = null;
@@ -155,4 +157,25 @@ public final class TestUtility {
 		}
 	}
 	
+	/*public static void addInfosForTestDatabaseManager() {
+		PreparedStatement cleanPs = null;
+
+		Connection connection = ConnectionDB.connection();
+		if(connection != null) {
+			try {
+				cleanPs = connection.prepareStatement(SCRIPT_ADD_DB_MANAGER);
+				cleanPs.executeUpdate();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				if(cleanPs!=null) {
+					try {
+						cleanPs.close();
+					}catch(SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}*/
 }

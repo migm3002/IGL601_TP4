@@ -71,8 +71,8 @@ public class DatabaseManager implements Runnable{
 	 * 
 	 * @param Message : request
 	 */
-	private void insertBet(Message request) {
-
+	public boolean insertBet(Message request) {
+		boolean inserted = false;
 		Pari pari =(Pari) request.getArgument();
 		ListeDesMatchs currentListeDesMatchs= server.getCurrentListeDesMatchs();
 		Match selectedMatch = currentListeDesMatchs.getMatchWithId(pari.getIdMatch());
@@ -84,6 +84,7 @@ public class DatabaseManager implements Runnable{
 				if(PariDAO.placeBet(pari.getIdParieur(), pari.getIdMatch(), pari.getIdJoueur(),
 						pari.getMontant())) {
 					pari.setStatus(Status.commited);
+					inserted=true;
 				}else {
 
 					System.out.println("Error with bet insert");
@@ -106,6 +107,7 @@ public class DatabaseManager implements Runnable{
 		}else {
 			System.out.println("Bet refused : match is over or not started yet.");
 		}
+		return inserted;
 	}
 
 	/**
@@ -113,7 +115,7 @@ public class DatabaseManager implements Runnable{
 	 * 
 	 * @param Match : match
 	 */
-	private void updateMatchWinner(Match match) {
+	public void updateMatchWinner(Match match) {
 		if(match.getWinner()!=null) {
 			int idMatch = match.getId();
 			int idWinner = match.getWinner().getId();
@@ -132,7 +134,7 @@ public class DatabaseManager implements Runnable{
 	 * 
 	 * @param Message : request
 	 */
-	private void returnEarnings(Message request) {
+	public void returnEarnings(Message request) {
 		Pari betInfo = (Pari) request.getArgument();
 		int idParieur = betInfo.getIdParieur();
 		int idMatch = betInfo.getIdMatch();

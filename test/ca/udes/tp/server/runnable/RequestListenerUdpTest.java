@@ -78,15 +78,16 @@ public class RequestListenerUdpTest {
 		RequestListenerUdp listenerUdpTest = new RequestListenerUdp(listeningPortTest, serverTest);
 		UdpRequestSenderForTest udpSender = new UdpRequestSenderForTest();
 		Thread udpSenderThread = new Thread(udpSender);
-		udpSenderThread.start();
 		Thread udpListenerThread = new Thread(listenerUdpTest);
 		udpListenerThread.start();
+		udpSenderThread.start();
 		
 		try {
-			Thread.sleep(3500);
+			Thread.sleep(4000);
 		}catch(InterruptedException e) {
 			e.printStackTrace();
 		}
+		System.out.println("Test error : ListenerUdp has not received one of the test requests");
 		assertTrue("ListenerUdp has not received one of the test requests", listenerUdpTest.hasReceivedOnce());
 		
 		udpSenderThread.interrupt();
