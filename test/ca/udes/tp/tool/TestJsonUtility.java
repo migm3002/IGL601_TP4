@@ -1,6 +1,7 @@
 package ca.udes.tp.tool;
 
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -130,6 +131,38 @@ public class TestJsonUtility {
 		assertEquals("getClassementJoueur not okay", 12, JsonUtility.getClassementJoueur(joueur));
 		assertTrue("getServiceJoueur not okay", JsonUtility.getServiceJoueur(joueur));
 
+	}
+	
+	@Test
+	public void testInfosScore() {
+		ListeDesMatchs lm = new ListeDesMatchs();
+		JSONArray lmArray = JsonUtility.createJsonListeDesMatchsWith(lm);
+		JSONObject lmObj = JsonUtility.getJsonMatch(lmArray, 3);
+		JSONObject score = JsonUtility.getJsonScore(lmObj);
+		
+		String[][] tabSet = {{"7","1",""},{"5","0",""}};
+		assertArrayEquals(JsonUtility.getTableauSetFromScore(score), tabSet);
+		
+		assertTrue("getJsonTableauSetFromScore not JSONArray", JsonUtility.getJsonTableauSetFromScore(score)instanceof JSONArray);
+		
+		String[] tabJeu = {"Av",""};
+		assertArrayEquals(JsonUtility.getTableauJeuFromScore(score), tabJeu);
+		
+		assertTrue("getJsonTableauJeuFromScore not JSONArray", JsonUtility.getJsonTableauJeuFromScore(score)instanceof JSONArray);
+	
+		JSONArray tableauSet = JsonUtility.getJsonTableauSetFromScore(score);
+		String[] tabSetJ1 = {"7","1",""};
+		assertArrayEquals(JsonUtility.getTableauSetJoueur1FromTableauSet(tableauSet), tabSetJ1);
+		String[] tabSetJ2 = {"5","0",""};
+		assertArrayEquals(JsonUtility.getTableauSetJoueur2FromTableauSet(tableauSet), tabSetJ2);
+
+		assertTrue("getJsonTableauSetJoueur1FromTableauSet not a JSONObject", JsonUtility.getJsonTableauSetJoueur1FromTableauSet(tableauSet)instanceof JSONObject);
+		assertTrue("getJsonTableauSetJoueur2FromTableauSet not a JSONObject", JsonUtility.getJsonTableauSetJoueur2FromTableauSet(tableauSet)instanceof JSONObject);
+		
+		JSONArray tableauJeu = JsonUtility.getJsonTableauJeuFromScore(score);
+		assertEquals("Av", JsonUtility.getPointsJoueur1FromTableauJeu(tableauJeu));
+		assertEquals("", JsonUtility.getPointsJoueur2FromTableauJeu(tableauJeu));
+		
 	}
 
 }
