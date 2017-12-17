@@ -1,10 +1,12 @@
 package ca.udes.tp.dao;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import junit.framework.Assert;
 import utility.TestUtility;
 
 public class TestMatchDAO {
@@ -24,12 +26,12 @@ public class TestMatchDAO {
 	
 	@Test
 	public void testUpdateMatchWinner() {
-		Assert.assertTrue(MatchDAO.updateMatchWinner(1, 11));
+		assertTrue(MatchDAO.updateMatchWinner(1, 11));
 	}
 	
 	@Test
 	public void testUpdateMatchWinnerMatchNotInDB() {
-		Assert.assertFalse(MatchDAO.updateMatchWinner(2, 1));
+		assertFalse(MatchDAO.updateMatchWinner(2, 1));
 	}
 	
 }
