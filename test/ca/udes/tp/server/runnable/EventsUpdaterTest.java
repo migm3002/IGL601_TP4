@@ -20,6 +20,7 @@ public class EventsUpdaterTest {
 	private Server serverTest;
 	private EventsGenerator eventsGeneratorTest;
 	private ListeDesMatchs listeMatchs;
+	private ListeDesMatchs listeMatchsBasic;
 	private DatabaseManager dbManagerTest;
 	
 	@Before
@@ -34,6 +35,8 @@ public class EventsUpdaterTest {
 			e.printStackTrace();
 		}
 		listeMatchs = new ListeDesMatchs();
+		listeMatchsBasic = new ListeDesMatchs();
+		
 		serverTest = EasyMock.createMock(Server.class);
 		eventsGeneratorTest = EasyMock.createMock(EventsGenerator.class);
 		dbManagerTest = EasyMock.createMock(DatabaseManager.class);
@@ -92,11 +95,14 @@ public class EventsUpdaterTest {
 		
 		try {
 			Thread.sleep(1000);
+			
 		}catch(InterruptedException e) {
 			e.printStackTrace();
 		}
-		assertFalse("Two listeMatchs must be different", (eventsUpdater.getCurrentListeDesMatchs().get(5).getContestationsRestantesJoueur2()==listeMatchs.get(5).getContestationsRestantesJoueur2()));
-		
+		assertFalse("Two listeMatchs must be different", (eventsUpdater.getCurrentListeDesMatchs().get(3).getContestationsRestantesJoueur2()==listeMatchsBasic.get(3).getContestationsRestantesJoueur2()));
+		assertFalse("Two listeMatchs must be different", (eventsUpdater.getCurrentListeDesMatchs().get(3).getScore().equals(listeMatchsBasic.get(3).getScore())));
+		assertFalse("Two listeMatchs must be different", (eventsUpdater.getCurrentListeDesMatchs().get(8).getScore().equals(listeMatchsBasic.get(8).getScore())));
+
 	}
 	
 }
