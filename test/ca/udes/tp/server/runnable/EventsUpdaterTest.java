@@ -24,7 +24,15 @@ public class EventsUpdaterTest {
 	
 	@Before
 	public void setUp() {
-		ArrayBlockingQueue<String> queueEvent = new ArrayBlockingQueue<String>(50);
+		ArrayBlockingQueue<String> queueEvent = new ArrayBlockingQueue<String>(10);
+		String[] eventTable = {"+M9P2.","CM4P2.","+M4P1."};
+		try {
+			for(int i=0; i<eventTable.length; i++) {
+				queueEvent.put(eventTable[i]);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		listeMatchs = new ListeDesMatchs();
 		serverTest = EasyMock.createMock(Server.class);
 		eventsGeneratorTest = EasyMock.createMock(EventsGenerator.class);
@@ -83,12 +91,11 @@ public class EventsUpdaterTest {
 		eventsUpThread.start();
 		
 		try {
-			Thread.sleep(20000);
+			Thread.sleep(1000);
 		}catch(InterruptedException e) {
 			e.printStackTrace();
 		}
-		
-		assertFalse("Two listeMatchs must be different", eventsUpdater.getCurrentListeDesMatchs().equals(listeMatchs));
+		assertFalse("Two listeMatchs must be different", (eventsUpdater.getCurrentListeDesMatchs().get(5).getContestationsRestantesJoueur2()==listeMatchs.get(5).getContestationsRestantesJoueur2()));
 		
 	}
 	
