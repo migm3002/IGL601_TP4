@@ -22,7 +22,7 @@ public class ChronoUpdater implements Runnable{
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(30000);                 //Wait 30 seconds before updating chronometre again.
+				Thread.sleep(1000);                 //Wait 30 seconds before updating chronometre again.
 			} catch(InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}

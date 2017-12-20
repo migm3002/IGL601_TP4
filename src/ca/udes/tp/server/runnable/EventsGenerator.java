@@ -31,12 +31,12 @@ public class EventsGenerator implements Runnable{
 	public void run() {
 		try {
 			//Wait before sending events
-			Thread.sleep(10000);
+			Thread.sleep(1000);
 			while(true) {
 				//Put an event into the event queue.
 				getEventQueue().put(generateEvent());
 				//Wait before next event.
-				Thread.sleep(3000);
+				Thread.sleep(1000);
 			}
 		}catch(InterruptedException e) {
 			e.printStackTrace();

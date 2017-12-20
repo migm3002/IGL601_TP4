@@ -54,7 +54,7 @@ public class EventsUpdaterTest {
 	}
 	
 	@After
-	public void takeDown() {
+	public void tearDown() {
 		
 	}
 	
