@@ -41,7 +41,6 @@ public class RequestListenerTcpTest {
 		ListeDesMatchs listMatchTest = new ListeDesMatchs(arrayListMatch);
 		
 		serverTest = EasyMock.createMock(Server.class);
-//		dbManagerTest = EasyMock.createMock(DatabaseManager.class);
 		dbManagerTest = new DatabaseManager(serverTest);
 		listeningPortTest = Server.DEFAULT_LISTENING_PORT_TCP+1;
 		queueInputTest = new ArrayBlockingQueue<>(DatabaseManager.QUEUE_INPUT_CAPACITY, true);
@@ -50,11 +49,7 @@ public class RequestListenerTcpTest {
 		EasyMock.expect(serverTest.getDbManager()).andStubReturn(dbManagerTest);
 		EasyMock.expect(serverTest.getCurrentListeDesMatchs()).andStubReturn(listMatchTest);
 		EasyMock.replay(serverTest);
-		
-//		EasyMock.expect(dbManagerTest.getQueueInput()).andStubReturn(queueInputTest);
-//		EasyMock.expect(dbManagerTest.getQueueOutput()).andStubReturn(queueOutputTest);
-//		EasyMock.replay(dbManagerTest);
-		
+				
 		TestUtility.CleanUpDB();
 		TestUtility.addInfosForTestPariDAO();
 		
@@ -65,6 +60,21 @@ public class RequestListenerTcpTest {
 		TestUtility.CleanUpDB();
 	}
 	
+	@Test
+	public void testConstructor1() {
+		RequestListenerTcp listenerTcp = new RequestListenerTcp(listeningPortTest, serverTest);
+		Assert.assertTrue(listenerTcp.getDatabaseManager()==serverTest.getDbManager());
+		Assert.assertTrue(listenerTcp.getListeningPort()==listeningPortTest);
+		EasyMock.reset(serverTest);
+	}
+	
+	@Test
+	public void testConstructor2() {
+		RequestListenerTcp listenerTcp = new RequestListenerTcp(serverTest);
+		Assert.assertTrue(listenerTcp.getDatabaseManager()==serverTest.getDbManager());
+		Assert.assertTrue(listenerTcp.getListeningPort()==Server.DEFAULT_LISTENING_PORT_TCP);
+		EasyMock.reset(serverTest);
+	}
 	
 	@Test
 	public void testRun() {
